@@ -19,7 +19,7 @@ network-scheme/
 ├── Escaneo tShark/             Prácticas y capturas de tráfico con tShark
 ├── Imagenes/                   Referencias visuales y capturas de pantalla
 ├── Red WAN - Mega Topología/   Topología de red de área amplia (WAN)
-├── Resumenes/                  Notas completas de estudio para CCNA
+├── Resumenes/                  Notas completas de estudio para CCNA (Módulos 1, 2 y 3)
 ├── Topologías/                 Otras topologías de red en Packet Tracer
 ├── RED_SIMPLE.MD               Documentación de topología de red simple
 ├── network-isp.pkt             Simulación de red ISP en Cisco Packet Tracer
@@ -35,15 +35,13 @@ Los documentos PDF en `Documentos/` contienen comandos y configuraciones CCNA pa
 - Cisco Packet Tracer (versión 7.0 o superior)
 - Conocimientos básicos de enrutamiento y NAT
 
-========================================================================================================================================================
+---
 
-# Redes CCNA con CISCO Resumenes de Modulo 1
-
-## Creditos a instructor de CISCO Ken Contreras en UCR.
+# Redes CCNA con CISCO - Notas y Resúmenes
 
 ## Notas de Estudio CCNA 
 
-En la carpeta de Resumenes encontrarás mis notas completas del curso CCNA, tanto las notas originales de clase como versiones avanzadas expandidas con mucho más detalle.
+En la carpeta de [Resumenes](./Resumenes/) encontrarás las notas completas de estudio para los tres módulos de certificación CCNA (Módulo 1: Fundamentos de Redes, Módulo 2: Switching, Routing & Wireless, y Módulo 3: Enterprise Networking, Security & Automation), incluyendo tanto las notas de clase originales como las notas avanzadas detalladas.
 
 ### Módulo 1 - Fundamentos de Redes CCNA
 
@@ -136,6 +134,22 @@ En la carpeta de Resumenes encontrarás mis notas completas del curso CCNA, tant
 | [Clase 12](./Resumenes/Modulo%202/Notas%20de%20clase%2012%20CAP%2015%20RUTAS%20ESTATICAS.txt) | Rutas estáticas IPv4/IPv6, sumarización |
 | **[→ Nota Avanzada 11](./Resumenes/Modulo%202/Nota%20avanzada%20de%20clase%2011.md)** | **Rutas estáticas vs dinámicas, AD, métricas, RIP/EIGRP/OSPF, BGP, clases IP** |
 | **[→ Nota Avanzada 12](./Resumenes/Modulo%202/Nota%20avanzada%20de%20clase%2012.md)** | **Tipos de rutas estáticas, sintaxis IPv4/IPv6, sumarización, rutas flotantes** |
+
+### Módulo 3 - Enterprise Networking, Security, and Automation
+
+#### Capítulos 1-2: Protocolo OSPF (Área Única y Multiárea)
+| Recurso | Descripción |
+|---------|-------------|
+| [Clase 1](./Resumenes/Modulo%203/NOTAS%20CLASE%201%20MOD%203.txt) | Fundamentos de OSPF, Dijkstra, métricas, DR/BDR |
+| [Clase 2](./Resumenes/Modulo%203/NOTAS%20CLASE%202%20MOD%203.txt) | OSPF Multiárea, roles de routers, sumarización ABR, LSAs |
+| **[→ Nota Avanzada 1](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%201.md)** | **Fundamentos de OSPFv2/OSPFv3, paquetes, adyacencias, elección DR/BDR, costo y verificación** |
+| **[→ Nota Avanzada 2](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%202.md)** | **OSPF Multiárea, ABR/ASBR, LSA tipos 1-5, sumarización inter-área, reference-bandwidth, timers** |
+
+#### Capítulo 3: Seguridad de Red y Listas de Control de Acceso (ACLs)
+| Recurso | Descripción |
+|---------|-------------|
+| [Clase 3](./Resumenes/Modulo%203/NOTAS%20CLASE%203%20ACLS.txt) | Tríada CIA, listas de control de acceso estándar y extendidas |
+| **[→ Nota Avanzada 3](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%203.md)** | **Seguridad CIA, lógica Wildcard, ACLs estándar vs extendidas, reglas de ubicación y escenarios prácticos** |
 
 #### Ver todas las notas completas
 → **[Acceder a Resumenes/README.md](./Resumenes/README.md)** para guía completa y estructura detallada
