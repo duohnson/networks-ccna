@@ -1,0 +1,229 @@
+MODULO 3 : CCNA 
+----------------------------------------------------------------------------------
+
+PROTOCOLO DE ENRUTAMIENTO:
+
+OSPF: OPEN SHORTEST PATH FIRST
+IGP : INTERNAL GATEWAY PROTOCOL : DENTRO DE UN MISMO AS
+ESTADO ENLACE: CREA MAPA TOPOLOGICO : DATABASE
+ALGORITMO: DIJKSTRA
+DISTANCIA ADMINISTRATIVA: 110
+METRICA: COSTOS :          ANCHO DE BANDA DE REFENCIA / ANCHO DE BANDA DE LA INTERFACE
+				  8
+				10  / ANCHO DE BANDA DE LA INTERACE
+----------------------------------------------------------------------------------------------
+
+CONFIGURACION:
+
+ROUTER OSPF #
+NETWORK (RED) (WILDCARD) AREA (#)
+PASSIVE INTERFACE (INTERFACE PASIVA)
+EXIT
+
+---------------------------------------------------------------------------------------------
+COMPONENTES DEL PROTOCOLO DE ENRUTAMIENTO:
+
+1. BASE DE DATOS : LO QUE QUIERO PUBLICAR...
+2. MENSAJES DEL PROTOCOLO: COMO LO VOY A PUBLICAR?
+3. ALGORITMO DE ENRUTAMIENTO: CORAZON DEL PROTOCOLO : CALCULA LAS MEJORES RUTAS EN BASE A LAS MENORES METRICAS  (DIJKSTRA)
+
+---------------------------------------------------------------------------------------------
+
+TIPOS DE MENSAJES DE OSPF:
+
+HELLO: SIRVE PARA CONOCER VECINOS Y FORMAR ADYACENCIAS
+LSDB : LINK STATE DATABASE : SINCRONIZA LA BASE DE DATOS : PUBLICA TODAS LAS RUTAS CONCIDAS POR OSPF
+LSR  : LINK STATE REQUEST: SOLICITAR REGISTROS ESPECIICOS : 
+LSU  : LINK STATE UPDATE : ENVIA REGISTROS ESPECIFICOS : 
+	LSA: LINK STATE ADVERTISEMENT
+LSACK: LINK STATE ACKNOWLEDGE : ACUSE DE RECIBIDO.
+
+
+---------------------------------------------------------------------------------------------
+TABLAS DEL OSPF:
+
+1. TABLA DE VECINOS: SHOW IP OSPF NEIGBORD   : CONTIENE LOS VECINOS DE OSPF
+2. TABLA DE TOPOLOGIA: SHOW IP OSPF DATABASE :  CONTIENE TODAS LAS RUTAS DE OSPF.
+3. TABLA DE ENRUTAMIENTO: SHOW IP ROUTE      : CONTIENE LAS MEJORES RUTAS
+
+---------------------------------------------------------------------------------------
+OSPF V3
+
+IPV6 OSPF 1
+ROUTER-ID 1.1.1.1
+EXIT
+
+INTERFACE FAST0/0
+IPV6 OSPF 1 AREA 0
+EXIT
+
+-------------------------------------------------------------------------------------------
+LSP : LINK STATE PACKAGE
+	LSU: LINK STATE UPDATE
+		LSA: LINK STATE ADVERTISEMENT
+
+------------------------------------------------------------------------------------------------
+DR: ROUTER DESIGNADO
+BDR: ROUTER DESIGNADO DE RESPALDO
+DROTHERS: LOS DEMAS.
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+PRACTICA: CONFIGURAR PROTOCOLO DE ENRUTAMIENTO OSPF:
+
+RA
+ROUTER OSPF 1
+NETWORK 10.0.0.0 0.0.0.7 AREA 0
+NETWORK 192.168.1.0 0.0.0.255 AREA 0
+PASSIVE-INTERFACE FAST0/1
+EXIT
+
+RB
+ROUTER OSPF 1
+NETWORK 10.0.0.0 0.0.0.7 AREA 0
+NETWORK 192.168.2.0 0.0.0.255 AREA 0
+PASSIVE-INTERFACE FAST0/1
+EXIT
+
+RC
+ROUTER OSPF 1
+NETWORK 10.0.0.0 0.0.0.7 AREA 0
+NETWORK 192.168.3.0 0.0.0.255 AREA 0
+PASSIVE-INTERFACE FAST0/1
+EXIT
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+PARA SELECCIONAR EL DR Y BDR:  SHOW IP OSPF INTERFACE FAST0/0
+
+1. PRIORIDAD DE LA INTERFACE: 
+
+2. POR ROUTER ID: 
+	2.1 : MANUALMENTE POR COMANDO
+	2.2 : INTERFACE LOOPBACK
+	2.3 : INTERFACE FISICA MAS ALTA
+
+--------------------------------------------------------------------------------------------
+ESCOGER EL RA COMO DR POR LOOPBACK:
+
+RA
+INTER LOOPBACK 0
+IP ADD 200.0.0.1 255.255.255.255
+EXIT
+
+------------------------------------------------------------------------------------------------------
+ESCOGER EL RB COMO DR POR COMANDO
+
+RB
+ROUTER OSPF 1
+ROUTER-ID 201.0.0.1
+EXIT
+
+-----------------------------------------------------------------------------------------------------
+ESCOGER EL RC COMO DR POR PRIORIDAD:
+
+RC
+INTER FAST0/0
+IP OSPF PRIORITY 5
+EXIT
+
+NOTA: UNA PRIORIDAD DE CERO (0) LE INFORMA AL OSPF QUE NUNCA SERA DR NI BDR.
+-------------------------------------------------------------------------------------------------
+
+TIPOS DE ADYACENCIAS DE OSPF:
+
+FULL/DR : BDR O DROTHER CON FULL ADYACENCIA A UN DR.
+FULL/BDR: DR O DROTHER CON FULL ADYACENCIA A UN BDR.
+FULL/DROTHER: DR O BDR CON FULL ADYACENCIA A UN DROTHER.
+TWO/WAY DROTHER: ADYACENCIAS ENTRE OTHER.
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+ESTADOS OPERATIVOS DEL OSPF:
+
+DOWN : APAGADO
+INIT : ENVIA Y RECIBE HELLOS
+TWO-WAY : EN REDES DE ACCESO MULTIPLE ELIGE EL DR Y BDR.
+
+EX-START : SELECCION DE RELACON MASTER /SLAVE
+EX-CHANGE: INTERCAMBIAN LOS DBD
+LOADING : ENVIA LSR Y LSU PARA REGISTROS ESPECIFICOS
+
+FULL : CONVERGENCIA TOTAL
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+FORMULA PARA CONOCER LA CANTIDAD DE ADYACENCIAS EN REDES DE ACCESO MULTIPLE:
+
+N (N-1) /2  : CANTIDAD DE ADYACENCIAS
+
+DONDE N ES EL NUMERO ROUTERS.
+
+50 ROUTERS:
+
+50 * 49 /2 : 1225 ADYACENCIAS.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

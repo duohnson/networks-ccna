@@ -11,9 +11,12 @@ Resumenes/
 │   ├── Subneteo_Conceptos.md               (Subneting avanzado)
 │   ├── Notas de clase 1-11.txt             (Notas originales por clase)
 │   └── Nota avanzada de clase [X-Y].md    (Versiones expandidas)
-└── Modulo 2/
-    ├── Notas de clase 1-12.txt              (Notas originales por clase)
-    └── Nota avanzada de clase [X].md       (Versiones expandidas)
+├── Modulo 2/
+│   ├── Notas de clase 1-12.txt              (Notas originales por clase)
+│   └── Nota avanzada de clase [X].md       (Versiones expandidas)
+└── Modulo 3/
+    ├── NOTAS CLASE [1-3].txt               (Notas originales por clase)
+    └── Nota avanzada de clase [1-3].md     (Versiones expandidas)
 ```
 
 ---
@@ -257,6 +260,53 @@ Resumenes/
   - Sumarización de rutas IPv4 e IPv6
   - Ruta completamente especificada
   - Verificación de rutas estáticas
+
+---
+
+## Módulo 3: Enterprise Networking, Security, and Automation
+
+### Clase 1 (Capítulo 1): Fundamentos de OSPF de Área Única
+**Nota Original:**
+- [Clase 1 - Fundamentos de OSPF](/Resumenes/Modulo%203/NOTAS%20CLASE%201%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 1**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%201.md)
+  - Protocolo OSPFv2 y OSPFv3: algoritmo Dijkstra (SPF) y costo métrico
+  - Las 3 estructuras de datos (Vecinos, LSDB, Enrutamiento)
+  - Los 5 tipos de paquetes OSPF (Hello, DBD, LSR, LSU, LSAck)
+  - Estados de adyacencia (Down → Init → Two-Way → ExStart → Exchange → Loading → Full)
+  - Redes multiacceso: Roles DR, BDR y DROther (fórmula N(N-1)/2)
+  - Proceso de elección de DR/BDR (Prioridad y Router ID)
+  - Configuración paso a paso de OSPFv2 y OSPFv3 con interfaces pasivas
+
+### Clase 2 (Capítulo 2): OSPF Multiárea, Métricas, Temporizadores y LSAs
+**Nota Original:**
+- [Clase 2 - OSPF Multiárea](/Resumenes/Modulo%203/NOTAS%20CLASE%202%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 2**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%202.md)
+  - Jerarquía multiárea: Área 0 (Backbone) y áreas estándar
+  - Roles de routers: Interno, Troncal, ABR y ASBR
+  - Taxonomía completa de LSAs (Tipo 1 al 5) y códigos en tabla de enrutamiento (`O`, `O IA`, `O E1/E2`)
+  - Sumarización inter-área en ABR (`area range`) con desglose binario
+  - Optimización de costo: calibración de `auto-cost reference-bandwidth` para enlaces Gigabit y 10G
+  - Ajuste de temporizadores Hello y Dead
+  - Propagación de ruta por defecto (`default-information originate`)
+
+### Clase 3 (Capítulo 3): Seguridad de Red y Listas de Control de Acceso (ACLs)
+**Nota Original:**
+- [Clase 3 - ACLs y Seguridad](/Resumenes/Modulo%203/NOTAS%20CLASE%203%20ACLS.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 3**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%203.md)
+  - Fundamentos de ciberseguridad: Tríada CIA, cifrado simétrico/asimétrico y hashing
+  - Principios de ACLs: evaluación Top-Down, primer match y Deny Implícito
+  - Lógica y cálculo de máscaras Wildcard (`host` y `any`)
+  - ACLs Estándar vs Extendidas: diferencias, rangos (1-99 / 100-199) y sintaxis nombrada
+  - Regla de oro de ubicación (Estándar cerca del destino / Extendida cerca del origen)
+  - Aplicación en interfaces (`ip access-group in/out`) y líneas VTY (`access-class in`)
+  - Casos prácticos de examen: bloqueo web vs autorización exclusiva de servicios (DNS/DHCP/Web)
+  - Edición moderna con números de secuencia
 
 ---
 
