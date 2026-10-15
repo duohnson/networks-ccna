@@ -5,7 +5,7 @@ Documentación y estudio de redes.
 ## Mis Topologías de Red:
 
 ![Simulación de red actual](/Imagenes/Captura_23.png)
-![Simulación de red básica](/Imagenes/test_lab.png)
+![Simulación de red básica](/Imagenes/Captura_24.png)
 
 ## Descripción
 
