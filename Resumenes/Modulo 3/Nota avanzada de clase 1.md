@@ -51,7 +51,7 @@ El funcionamiento de OSPF se apoya en tres componentes estructurales:
 
 2. **Tabla de Topología / Base de Datos de Estado de Enlace (*LSDB - Link-State Database*)**:
    - Representa el mapa topológico completo del área.
-   - **Regla fundamental**: Todos los routers dentro de la misma área OSPF poseen exactamente la misma LSDB.
+   - **Regla fundamental**: Una vez convergida el área, sus routers sincronizan los LSAs de alcance de área. Un ABR mantiene información separada de cada área a la que pertenece.
    - Comando de verificación: `show ip ospf database`.
 
 3. **Tabla de Enrutamiento (*Routing Table / RIB*)**:
@@ -70,8 +70,8 @@ OSPF utiliza 5 tipos de paquetes para descubrir vecinos, mantener adyacencias y 
 | **1** | **Hello** | *Hello Packet* | Descubre vecinos, negocia parámetros y mantiene adyacencias (Keepalive). En redes multiacceso elige al DR y BDR. |
 | **2** | **DBD** | *Database Description* | Contiene una lista abreviada de los LSAs en la LSDB del emisor; el receptor la compara con su propia LSDB. |
 | **3** | **LSR** | *Link-State Request* | Solicita información detallada de cualquier LSA identificado en el DBD que haga falta o esté desactualizado. |
-| **4** | **LSU** | *Link-State Update* | Respuesta explícita al LSR. Transporta los registros de estado de enlace (**LSAs**) detallados. |
-| **5** | **LSAck** | *Link-State Acknowledgment* | Confirma la recepción de un LSU, garantizando confiabilidad sobre IP (ya que OSPF no usa TCP). |
+| **4** | **LSU** | *Link-State Update* | Transporta uno o más LSAs, como respuesta a solicitudes o durante la propagación de cambios y refrescos. |
+| **5** | **LSAck** | *Link-State Acknowledgment* | Confirma la recepción de LSAs y participa en la distribución fiable sobre IP; OSPF no usa TCP. |
 
 ```text
 [Router A]                                                   [Router B]
@@ -112,7 +112,7 @@ Para que dos routers alcancen la adyacencia completa, deben progresar por una se
 ## 5. Redes Multiacceso: Elección de DR, BDR y DROthers
 
 ### 5.1 El Problema de la Saturación de Adyacencias
-En un medio compartido de difusión (como un switch Ethernet donde conviven $N$ routers), si cada router estableciera adyacencia directa con todos los demás, el número de adyacencias totales crecería exponencialmente según la fórmula:
+En un medio compartido de difusión (como un switch Ethernet donde conviven $N$ routers), si cada router estableciera adyacencia completa con todos los demás, el número de adyacencias crecería de forma cuadrática según la fórmula:
 
 $$\text{Total de Adyacencias} = \frac{N(N - 1)}{2}$$
 
@@ -120,7 +120,7 @@ $$\text{Total de Adyacencias} = \frac{N(N - 1)}{2}$$
 
 $$\frac{50 \times 49}{2} = 1225 \text{ adyacencias}$$
 
-Esto generaría una tormenta inmanejable de actualizaciones (flooding de LSUs) que saturaría la CPU y el ancho de banda.
+Esto aumenta el trabajo de sincronización. Con un DR y un BDR, cada DROther forma adyacencia completa con ambos y el DR con el BDR: para $N \geq 2$, se obtienen $2N-3$ adyacencias completas (97 para 50 routers). La fórmula anterior describe la malla completa hipotética, no el total real de adyacencias FULL en ese segmento OSPF.
 
 ### 5.2 La Solución: Roles DR, BDR y DROther
 Para evitar este desbordamiento, OSPF elige dos roles centrales:
@@ -271,6 +271,8 @@ Router-B(config-router)# exit
 > Reset ALL OSPF processes? [no]: yes
 > ```
 
+Reiniciar el proceso interrumpe sus vecindades. Reiniciar solo un router no garantiza que se convierta en DR: un DR o BDR que siga activo conserva su rol. En el laboratorio, preparar prioridades antes de formar las vecindades para obtener una elección controlada.
+
 ---
 
 ## 8. Fundamentos de OSPFv3 (Soporte IPv6)
@@ -318,3 +320,11 @@ Router(config-if)# exit
 - La elección de DR se basa en **Prioridad más alta** (0 descalifica) y, en caso de empate, en el **Router ID más alto**.
 - Las interfaces hacia clientes finales deben configurarse como `passive-interface`.
 - OSPFv3 transporta IPv6 y se activa directamente en la interfaz del router manteniendo un Router ID de 32 bits.
+
+## Referencias y Práctica
+
+- [Notas originales de clase 1](./NOTAS%20CLASE%201%20MOD%203.txt).
+- [Tarea 1 OSPF](../../Topolog%C3%ADas/Topolog%C3%ADas%20de%20Modulo%203/Notas%20de%20Tarea%201%20OSPF.txt).
+- [Tarea 2 OSPF IPv6](../../Topolog%C3%ADas/Topolog%C3%ADas%20de%20Modulo%203/Notas%20de%20Tarea%202%20OSPF%20IPV6.txt).
+
+Para OSPFv3, comprobar `show ipv6 ospf neighbor`, `show ipv6 ospf interface` y `show ipv6 route ospf`. Asignar un Router ID distinto a cada router; el bloque con `3.3.3.3` de la tarea no debe copiarse sin cambios a todos los equipos.

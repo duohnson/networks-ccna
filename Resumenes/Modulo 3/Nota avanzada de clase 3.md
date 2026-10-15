@@ -235,7 +235,7 @@ R1(config-if)# exit
 ### Escenario B: Permitir ÚNICAMENTE acceso Web, denegar todo lo demás
 
 > [!WARNING]
-> **Trampa clásica de examen**: Si solo configuras `permit tcp ... eq 80` y `permit tcp ... eq 443`, los usuarios **no podrán navegar**, porque antes de abrir una página web el navegador debe solicitar una IP por **DHCP** y resolver nombres de dominio mediante **DNS**. Si bloqueas DHCP y DNS, la web no funcionará.
+> **Dependencias del escenario**: Para navegar por nombre se necesita resolver DNS, salvo que la información esté disponible por otro medio. DHCP es necesario si los equipos obtienen su configuración dinámicamente. Con IP estática y acceso directo por dirección, esos requisitos pueden ser distintos. Permitir solo TCP 80/443 no cubre automáticamente todas las dependencias de los clientes.
 
 **Paso 1: Desglose Técnico de Dependencias:**
 1. **DHCP**: Necesario si los hosts obtienen IP dinámica (puertos UDP 67 y 68).
@@ -312,4 +312,10 @@ Router(config-ext-nacl)# exit
 - **ACL Estándar**: Filtra únicamente por IP de origen. Se ubica **cerca del destino**.
 - **ACL Extendida**: Filtra por origen, destino, protocolo y puertos. Se ubica **cerca del origen**.
 - En interfaces se aplica con `ip access-group <in|out>`; en líneas VTY con `access-class in`.
-- Al permitir tráfico web en una red estricta, siempre deben habilitarse previamente los servicios de soporte indispensables (**DNS** puerto 53 y **DHCP** puertos 67/68).
+- Al permitir tráfico web, identificar también las dependencias de los clientes: DNS para resolución de nombres y DHCP si se usa direccionamiento dinámico.
+
+## Referencias y Continuación
+
+- [Notas originales de clase 3](./NOTAS%20CLASE%203%20ACLS.txt).
+- [Tarea 3 ACL](../../Topolog%C3%ADas/Topolog%C3%ADas%20de%20Modulo%203/Notas%20de%20Tarea%203%20ACL.txt).
+- [Clase 4: VTY, secuencias y ACLs IPv6](./Nota%20avanzada%20de%20clase%204.md).

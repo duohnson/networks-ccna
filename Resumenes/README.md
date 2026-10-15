@@ -15,8 +15,9 @@ Resumenes/
 │   ├── Notas de clase 1-12.txt              (Notas originales por clase)
 │   └── Nota avanzada de clase [X].md       (Versiones expandidas)
 └── Modulo 3/
-    ├── NOTAS CLASE [1-3].txt               (Notas originales por clase)
-    └── Nota avanzada de clase [1-3].md     (Versiones expandidas)
+    ├── NOTAS CLASE ... .txt               (Originales 1-5 y resúmenes 6-15)
+    ├── Nota avanzada de clase [1-15].md  (Versiones expandidas)
+    └── Nota avanzada de caso de estudio.md (Integración HQ y sucursales)
 ```
 
 ---
@@ -309,6 +310,157 @@ Resumenes/
   - Edición moderna con números de secuencia
 
 ---
+
+### Clase 4: Continuación de ACLs, VTY y Filtrado IPv6
+**Nota Original:**
+- [Clases 3 y 4 - ACLs](/Resumenes/Modulo%203/NOTAS%20CLASE%203%20Y%204%20ACLS.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 4**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%204.md)
+  - Desglose de políticas y sentido IN/OUT
+  - Bloqueo de solicitudes ICMP entre VLANs
+  - Restricción de VTY, requisitos SSH y edición por secuencias
+  - ACLs IPv6, prefijos y permisos de Neighbor Discovery
+
+### Clase 5: NAT Estática, Dinámica y PAT
+**Nota Original:**
+- [Clase 5 - NAT](/Resumenes/Modulo%203/NOTAS%20CLASE%205%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 5**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%205.md)
+  - RFC 1918 y los cuatro términos de NAT
+  - Interfaces inside/outside y rutas de retorno
+  - NAT estática, pools dinámicos y PAT con pool o interfaz
+  - Verificación de traducciones y diagnóstico
+
+### Tarea 6: PPP, PAP, CHAP y HDLC
+**Resumen de la Tarea:**
+- [Notas rápidas - PPP](/Resumenes/Modulo%203/NOTAS%20CLASE%206%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 6**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%206.md)
+  - Enlaces seriales, DCE/DTE, LCP y NCP
+  - Autenticación PAP y CHAP en ambos extremos
+  - Direccionamiento y OSPF de la Tarea 6
+  - Diagnóstico por capas y pruebas de cada enlace
+
+### Tarea 7: Frame Relay
+**Resumen de la Tarea:**
+- [Notas rápidas - Frame Relay](/Resumenes/Modulo%203/NOTAS%20CLASE%207%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 7**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%207.md)
+  - PVC, DLCI, LMI y mapas estáticos
+  - Subinterfaces multipunto y punto a punto
+  - OSPF non-broadcast, vecinos y temporizadores
+  - Estados ACTIVE, INACTIVE y DELETED
+
+### Clase 8: Práctica de Examen (Tarea 9)
+**Resumen de la Tarea:**
+- [Notas rápidas - Examen](/Resumenes/Modulo%203/NOTAS%20CLASE%208%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 8**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%208.md)
+  - VLANs, Router-on-a-Stick y DHCP Relay
+  - PPP, Frame Relay y redistribución OSPF/EIGRP
+  - Salida al ISP, NAT y ACLs del examen
+  - Matriz de pruebas permitidas y denegadas
+
+### Clase 9: Seguridad de Red
+
+**Resumen de Estudio:**
+- [Notas rapidas - Clase 9](/Resumenes/Modulo%203/NOTAS%20CLASE%209%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 9**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%209.md)
+  - Amenazas, defensa en profundidad, AAA, SSH y criptografia
+
+### Clase 10: WAN, VPN e IPsec
+
+**Resumen de Estudio:**
+- [Notas rapidas - Clase 10](/Resumenes/Modulo%203/NOTAS%20CLASE%2010%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 10**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%2010.md)
+  - Acceso WAN, topologias, VPN site-to-site y remota, IKE, ESP y GRE
+
+### Clase 11: Calidad de Servicio (QoS)
+
+**Resumen de Estudio:**
+- [Notas rapidas - Clase 11](/Resumenes/Modulo%203/NOTAS%20CLASE%2011%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 11**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%2011.md)
+  - Retardo, jitter, marcado DSCP, colas, policing y shaping
+
+### Clase 12: Gestion de Red
+
+**Resumen de Estudio:**
+- [Notas rapidas - Clase 12](/Resumenes/Modulo%203/NOTAS%20CLASE%2012%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 12**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%2012.md)
+  - CDP, LLDP, NTP, SNMP, Syslog, respaldos y mantenimiento IOS
+
+### Clase 13: Diseno y Resolucion de Problemas
+
+**Resumen de Estudio:**
+- [Notas rapidas - Clase 13](/Resumenes/Modulo%203/NOTAS%20CLASE%2013%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 13**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%2013.md)
+  - Jerarquia, escalabilidad, documentacion, linea base y diagnostico IPv4/IPv6
+
+### Clase 14: Virtualizacion, Nube y SDN
+
+**Resumen de Estudio:**
+- [Notas rapidas - Clase 14](/Resumenes/Modulo%203/NOTAS%20CLASE%2014%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 14**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%2014.md)
+  - Hipervisores, cloud, NFV, planos, controladores, underlay y overlay
+
+### Clase 15: Automatizacion de Red
+
+**Resumen de Estudio:**
+- [Notas rapidas - Clase 15](/Resumenes/Modulo%203/NOTAS%20CLASE%2015%20MOD%203.txt)
+
+**Nota Avanzada:**
+- [**Nota Avanzada - Clase 15**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%2015.md)
+  - JSON, YAML, XML, REST, NETCONF/RESTCONF, Ansible, Terraform e IA/ML
+
+### Caso de Estudio: HQ, B1, B2, B3 y NewB
+- [**Nota Avanzada - Caso de Estudio**](/Resumenes/Modulo%203/Nota%20avanzada%20de%20caso%20de%20estudio.md)
+  - VLANs, VTP, STP, Port Security, DHCP y WLAN
+  - WAN, sumarización EIGRP y rutas estáticas
+  - NAT centralizada y alcance de la ACL FIREWALL
+  - Referencias al informe, notas de configuración y actividad `.pka`
+
+**Numeración y fuentes:** se conserva una secuencia continua de clases 1–15. La clase 8 resume la Tarea 9 original. Las clases 9–15 completan los temas de ENSA con material de estudio elaborado a partir de documentación oficial; cada nota identifica sus fuentes. Los números de clase son el orden de este repositorio, no los números de módulo de NetAcad.
+
+---
+
+### Correspondencia con el temario ENSA
+
+La secuencia de clases conserva el orden personal de estas notas. Esta tabla permite localizar todos los bloques del curso sin confundirlos con los numeros de tarea:
+
+| Bloque de ENSA | Clases de este repositorio |
+|---|---|
+| Conceptos y configuracion OSPFv2 | 1 y 2 |
+| Seguridad de red | 3 y 9 |
+| Conceptos y configuracion de ACLs IPv4 | 3 y 4 |
+| NAT para IPv4 | 5 |
+| Conceptos WAN | 6, 7 y 10 |
+| VPN e IPsec | 10 |
+| QoS | 11 |
+| Gestion de red | 12 |
+| Diseno de red | 13 |
+| Resolucion de problemas | 13 |
+| Virtualizacion de red | 14 |
+| Automatizacion de red | 15 |
+| Repaso integrado y caso de estudio | 8 y nota del caso |
+
+La clase 15 incorpora ademas Ansible, Terraform e IA/ML para el repaso CCNA v1.1. Referencias: [curso oficial ENSA](https://www.netacad.com/courses/ccna-enterprise-networking-security-automation?courseLang=en-US) y [temario CCNA](https://learningnetwork.cisco.com/s/ccna-exam-topics), consultados el 15 de octubre de 2026.
 
 ## Cómo Usar Estas Notas
 

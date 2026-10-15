@@ -35,7 +35,7 @@ OSPF divide un Sistema Autónomo en múltiples áreas lógicas conectadas entre 
    - **Regla inquebrantable**: Todas las áreas que no sean el Área 0 deben tener conexión directa (o mediante un túnel lógico *virtual-link*) hacia el Área 0.
 2. **Áreas Estándar / Regulares (No-Backbone)**:
    - Conectan usuarios finales y recursos locales.
-   - Aíslan el tráfico de LSAs internos: los aleteos de enlaces dentro del Área 1 no provocan recálculos SPF en el Área 2.
+   - Limitan la difusión de los LSAs internos de cada área. Los cambios de alcanzabilidad entre áreas sí pueden requerir actualizar rutas en otras áreas.
 
 ### 1.2 Beneficios del Diseño Multiárea
 - **LSDB más pequeña por router**: Cada router interno solo almacena el mapa topológico detallado de su propia área.
@@ -66,12 +66,12 @@ Los LSAs son los bloques de construcción que conforman la LSDB. Cada tipo de LS
 | **Tipo 1** | **Router LSA** | Todo router del área | Se difunde únicamente dentro de la **misma área**. Describe los enlaces e IPs directas del router. | **`O`** |
 | **Tipo 2** | **Network LSA** | El **DR** del segmento multiacceso | Se difunde únicamente dentro de la **misma área**. Describe la red multiacceso y lista todos los routers conectados al switch. | **`O`** |
 | **Tipo 3** | **Summary LSA** (Resumen de Red) | **ABR** | Se difunde entre áreas a través del Área 0. Informa a otras áreas sobre las redes existentes sin incluir la topología interna. | **`O IA`**<br>(*Inter-Area*) |
-| **Tipo 4** | **ASBR Summary LSA** | **ABR** | Se difunde a través de las áreas. Informa a los demás routers la ubicación exacta y el costo para alcanzar al ASBR. | **`O IA`** |
+| **Tipo 4** | **ASBR Summary LSA** | **ABR** | Informa a otras áreas cómo alcanzar al ASBR; ayuda a calcular rutas externas. | No representa por sí solo una ruta de red `O IA` |
 | **Tipo 5** | **AS External LSA** | **ASBR** | Se difunde por **todo el dominio OSPF** (excepto áreas Stub). Describe redes externas redistribuidas o la ruta por defecto hacia Internet. | **`O E1`** / **`O E2`** |
 
 > [!NOTE]
 > **Diferencia entre O E1 y O E2:**
-> - **E2 (Por defecto en Cisco)**: El costo de la ruta es fijo y refleja únicamente el costo reportado por el ASBR hacia la red externa (ignora el costo interno de los saltos dentro de OSPF).
+> - **E2 (Por defecto en Cisco)**: Prioriza la métrica externa anunciada. El costo interno hacia el punto de salida puede utilizarse para desempatar rutas con la misma métrica externa.
 > - **E1**: El costo es acumulativo (costo externo reportado por el ASBR + costo de todos los saltos internos OSPF para llegar al ASBR).
 
 ---
@@ -159,6 +159,8 @@ ABR-Router(config-router)# exit
 
 Al aplicar este comando, el ABR suprime la emisión de múltiples LSAs Tipo 3 individuales y emite **un único LSA Tipo 3** hacia el Área 0 con el prefijo `/18`, reduciendo drásticamente las tablas de los demás routers.
 
+El resumen abarca de `192.168.0.0` a `192.168.63.255`, incluidas subredes no utilizadas. En la **Tarea 1 del repositorio**, las redes `192.168.x.0/24` están en área 0 y las `172.16.x.0/24` en área 1; para esa topología concreta se usa `area 0 range 192.168.0.0 255.255.192.0` y `area 1 range 172.16.0.0 255.255.192.0`. El número después de `area` identifica el área de origen del resumen.
+
 ---
 
 ## 6. Optimización y Calibración del Costo OSPF
@@ -186,7 +188,7 @@ Router(config-router)# exit
 ```
 
 > [!CAUTION]
-> El comando `auto-cost reference-bandwidth` **debe configurarse de manera idéntica en TODOS los routers** del dominio OSPF. De lo contrario, los routers tendrán métricas incompatibles y podrían generarse bucles de enrutamiento.
+> Mantener `auto-cost reference-bandwidth` uniforme en todos los routers permite interpretar los costos de forma consistente. Valores diferentes pueden producir caminos asimétricos o contrarios al diseño; no impiden por sí solos formar vecindades.
 
 Con referencia de $10000\text{ Mbps}$ ($10\text{ Gbps}$):
 - FastEthernet ($100\text{ M}$): Costo = $10000 / 100 = \mathbf{100}$
@@ -242,7 +244,7 @@ Borde-Router(config-router)# exit
 ```
 
 > [!TIP]
-> El comando `default-information originate` solo inyecta la ruta si la ruta estática `0.0.0.0/0` existe en la tabla de enrutamiento. Si se desea forzar la inyección incluso si no existe una ruta por defecto previa, se utiliza la palabra clave `always`:
+> El comando `default-information originate` normalmente requiere una ruta `0.0.0.0/0` instalada en la tabla; en este laboratorio es estática. Si se desea forzar la inyección incluso si no existe una ruta por defecto previa, se utiliza la palabra clave `always`:
 > ```text
 > Borde-Router(config-router)# default-information originate always
 > ```
@@ -252,6 +254,8 @@ En los routers internos, esta ruta se aprenderá automáticamente como:
 O*E2 0.0.0.0/0 [110/1] via 10.0.0.1, GigabitEthernet0/0/0
 ```
 (Donde `*` significa ruta candidata por defecto, `O` aprendida por OSPF, y `E2` LSA Tipo 5).
+
+El bloque `router ospf 1` anterior anuncia la ruta **IPv4**. Para anunciar `::/0` con la sintaxis OSPFv3 de las tareas, configurar también `default-information originate` dentro de `ipv6 router ospf 1` y comprobar la ruta IPv6 predeterminada.
 
 ---
 
@@ -276,3 +280,9 @@ O*E2 0.0.0.0/0 [110/1] via 10.0.0.1, GigabitEthernet0/0/0
 - En infraestructuras modernas de $1\text{ Gbps}$ y superiores, se debe ajustar el `auto-cost reference-bandwidth 10000` de forma homogénea en toda la red.
 - Los temporizadores Hello y Dead **deben ser idénticos** entre routers vecinos para formar adyacencia.
 - La ruta por defecto se inyecta desde el router de borde mediante `default-information originate`.
+
+## Referencias y Práctica
+
+- [Notas originales de clase 2](./NOTAS%20CLASE%202%20MOD%203.txt).
+- [Configuración multiárea de Tarea 1](../../Topolog%C3%ADas/Topolog%C3%ADas%20de%20Modulo%203/Notas%20de%20Tarea%201%20OSPF.txt).
+- [Integración con NAT de clase 5](./Nota%20avanzada%20de%20clase%205.md).

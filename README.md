@@ -4,7 +4,7 @@ Documentación y estudio de redes.
 
 ## Mis Topologías de Red:
 
-![Simulación de red actual](/Imagenes/Captura%202.png)
+![Simulación de red actual](/Imagenes/Captura%23.png)
 ![Simulación de red básica](/Imagenes/test_lab.png)
 
 ## Descripción
@@ -150,6 +150,46 @@ En la carpeta de [Resumenes](./Resumenes/) encontrarás las notas completas de e
 |---------|-------------|
 | [Clase 3](./Resumenes/Modulo%203/NOTAS%20CLASE%203%20ACLS.txt) | Tríada CIA, listas de control de acceso estándar y extendidas |
 | **[→ Nota Avanzada 3](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%203.md)** | **Seguridad CIA, lógica Wildcard, ACLs estándar vs extendidas, reglas de ubicación y escenarios prácticos** |
+
+#### Clase 4: Continuación de ACLs y Acceso Remoto
+| Recurso | Descripción |
+|---------|-------------|
+| [Clases 3 y 4](./Resumenes/Modulo%203/NOTAS%20CLASE%203%20Y%204%20ACLS.txt) | Edición de ACLs, VTY y ACLs IPv6 |
+| **[→ Nota Avanzada 4](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%204.md)** | **Secuencias, SSH, filtrado ICMP entre VLANs y Neighbor Discovery** |
+
+#### Clase 5: NAT y PAT
+| Recurso | Descripción |
+|---------|-------------|
+| [Clase 5](./Resumenes/Modulo%203/NOTAS%20CLASE%205%20MOD%203.txt) | NAT estática, dinámica y sobrecarga |
+| **[→ Nota Avanzada 5](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%205.md)** | **Terminología NAT, pools, PAT, rutas de retorno y diagnóstico** |
+
+#### Tareas 6 y 7: PPP y Frame Relay
+| Recurso | Descripción |
+|---------|-------------|
+| [Resumen 6](./Resumenes/Modulo%203/NOTAS%20CLASE%206%20MOD%203.txt) | Notas rápidas reconstruidas de la Tarea 6 PPP |
+| **[→ Nota Avanzada 6](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%206.md)** | **HDLC, PPP, PAP/CHAP, reloj DCE y verificación** |
+| [Resumen 7](./Resumenes/Modulo%203/NOTAS%20CLASE%207%20MOD%203.txt) | Notas rápidas reconstruidas de la Tarea 7 Frame Relay |
+| **[→ Nota Avanzada 7](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%207.md)** | **DLCI, LMI, PVC, multipunto, punto a punto y OSPF** |
+
+#### Práctica de Examen y Caso de Estudio
+| Recurso | Descripción |
+|---------|-------------|
+| [Resumen Clase 8](./Resumenes/Modulo%203/NOTAS%20CLASE%208%20MOD%203.txt) | Orden de configuración y repaso rápido |
+| **[→ Nota Avanzada 8](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%208.md)** | **Integración de VLANs, DHCP Relay, OSPF/EIGRP, WAN, NAT y ACLs** |
+| **[→ Caso de Estudio](./Resumenes/Modulo%203/Nota%20avanzada%20de%20caso%20de%20estudio.md)** | **HQ y sucursales: diseño, configuraciones y criterios de verificación** |
+
+Las clases mantienen numeración continua: la clase 8 resume la Tarea 9 original; las clases 9–15 amplían los temas de ENSA y automatización CCNA.
+
+#### Clases 9–15: Seguridad, Servicios y Automatizacion
+| Recurso | Descripcion |
+|---------|-------------|
+| [Clase 9](./Resumenes/Modulo%203/NOTAS%20CLASE%209%20MOD%203.txt) · **[Avanzada 9](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%209.md)** | **Seguridad de Red:** Amenazas, defensa en profundidad, AAA, SSH y criptografia |
+| [Clase 10](./Resumenes/Modulo%203/NOTAS%20CLASE%2010%20MOD%203.txt) · **[Avanzada 10](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%2010.md)** | **WAN, VPN e IPsec:** Acceso WAN, topologias, VPN site-to-site y remota, IKE, ESP y GRE |
+| [Clase 11](./Resumenes/Modulo%203/NOTAS%20CLASE%2011%20MOD%203.txt) · **[Avanzada 11](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%2011.md)** | **Calidad de Servicio (QoS):** Retardo, jitter, marcado DSCP, colas, policing y shaping |
+| [Clase 12](./Resumenes/Modulo%203/NOTAS%20CLASE%2012%20MOD%203.txt) · **[Avanzada 12](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%2012.md)** | **Gestion de Red:** CDP, LLDP, NTP, SNMP, Syslog, respaldos y mantenimiento IOS |
+| [Clase 13](./Resumenes/Modulo%203/NOTAS%20CLASE%2013%20MOD%203.txt) · **[Avanzada 13](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%2013.md)** | **Diseno y Resolucion de Problemas:** Jerarquia, escalabilidad, documentacion, linea base y diagnostico IPv4/IPv6 |
+| [Clase 14](./Resumenes/Modulo%203/NOTAS%20CLASE%2014%20MOD%203.txt) · **[Avanzada 14](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%2014.md)** | **Virtualizacion, Nube y SDN:** Hipervisores, cloud, NFV, planos, controladores, underlay y overlay |
+| [Clase 15](./Resumenes/Modulo%203/NOTAS%20CLASE%2015%20MOD%203.txt) · **[Avanzada 15](./Resumenes/Modulo%203/Nota%20avanzada%20de%20clase%2015.md)** | **Automatizacion de Red:** JSON, YAML, XML, REST, NETCONF/RESTCONF, Ansible, Terraform e IA/ML |
 
 #### Ver todas las notas completas
 → **[Acceder a Resumenes/README.md](./Resumenes/README.md)** para guía completa y estructura detallada
