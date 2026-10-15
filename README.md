@@ -1,4 +1,4 @@
-# Network Scheme - Topologías y redes.
+# Network CCNA - Topologías y redes.
 
 Documentación y estudio de redes.
 
